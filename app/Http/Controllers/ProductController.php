@@ -97,8 +97,6 @@ class ProductController extends Controller
             array_push($recommend, $tmp);
         }
 
-        dd(json_encode($detail));
-
         return Response::output(Response::$ok, '获取成功', [
             'detail' => $detail,
             'recommend' => $recommend
