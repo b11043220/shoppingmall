@@ -35,8 +35,8 @@ class CartController extends Controller
     public function deleteCartItem(Request $request)
     {
         $input = $request->all();
-        $cartId = $input['cartId'];
-        $this->bizRepo->deleteCartItem($cartId);
+        $cartIds = json_decode($input['cartIds'], true);
+        $this->bizRepo->deleteCartItem($cartIds);
         return Response::output(Response::$ok, '已删除');
     }
 }
