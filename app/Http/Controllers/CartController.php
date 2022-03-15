@@ -31,4 +31,12 @@ class CartController extends Controller
         }
         return Response::output(Response::$ok, '', $cartItems);
     }
+
+    public function deleteCartItem(Request $request)
+    {
+        $input = $request->all();
+        $cartId = $input['cartId'];
+        $this->bizRepo->deleteCartItem($cartId);
+        return Response::output(Response::$ok, '已删除');
+    }
 }

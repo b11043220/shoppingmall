@@ -32,4 +32,9 @@ class BizRepository extends BaseRepository
     {
         return ShoppingCart::select($columns)->get()->toArray();
     }
+
+    public function deleteCartItem($cartId)
+    {
+        return ShoppingCart::destroy($cartId);
+    }
 }
