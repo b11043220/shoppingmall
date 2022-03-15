@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Models\Cart\ShoppingCart;
 use App\Models\Product\Category;
 use App\Models\Product\Product;
 
@@ -25,5 +26,10 @@ class BizRepository extends BaseRepository
     public function getProductDtl($productId, $columns=['*'])
     {
         return Product::where('id', $productId)->select($columns)->first()->toArray();
+    }
+
+    public function getCartItems($userId, $columns=['*'])
+    {
+        return ShoppingCart::select($columns)->get()->toArray();
     }
 }

@@ -22,6 +22,7 @@ class VerifyCsrfToken extends Middleware
         //
         'api/getCategoryList',
         'api/getProductByCateId',
-        'api/getProductDtl'
+        'api/getProductDtl',
+        'api/getCartItems'
     ];
 }
