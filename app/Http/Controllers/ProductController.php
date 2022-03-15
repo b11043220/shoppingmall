@@ -46,9 +46,9 @@ class ProductController extends Controller
         $offset = ($page-1)*$pageSize;
         $cateId = $data['cateId'];
 
-        $product = [];
-        $productList = $this->bizRepo->getProductByCateId($cateId, $pageSize, $offset);
-        foreach ($productList as $key => $product) {
+        $productList = [];
+        $list = $this->bizRepo->getProductByCateId($cateId, $pageSize, $offset);
+        foreach ($list as $key => $product) {
             $tmp = [];
             $thumb = Helper::imageLink($product['thumb']);
             $tmp['imgPath'] = $thumb;
@@ -56,7 +56,7 @@ class ProductController extends Controller
             $tmp['title'] = $product['title'];
             $tmp['marketPrice'] = $product['market_price'];
             $tmp['salePrice'] = $product['sale_price'];
-            array_push($product, $tmp);
+            array_push($productList, $tmp);
         }
         return Response::output(Response::$ok, '获取成功', $productList);
     }
