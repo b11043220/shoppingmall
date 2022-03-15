@@ -27,6 +27,7 @@ class VerifyCsrfToken extends Middleware
         'api/deleteCartItem',
         'api/updateCartQty',
         'api/addCart',
-        'api/getAddressList'
+        'api/getAddressList',
+        'api/updateAddress'
     ];
 }

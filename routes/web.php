@@ -21,3 +21,4 @@ Route::any('api/updateCartQty',         'CartController@updateCartQty');
 Route::any('api/addCart',               'CartController@addCart');
 
 Route::any('api/getAddressList',        'UserController@getAddressList');
+Route::any('api/updateAddress',         'UserController@updateAddress');

@@ -17,4 +17,16 @@ class UserController extends Controller
         }
         return Response::output(Response::$ok, '获取成功', $list);
     }
+
+    public function updateAddress(Request $request)
+    {
+        $data = $request->input();
+        $addressId = $data['addressId'];
+        $updated['name'] = $data['name'];
+        $updated['mobile'] = $data['mobile'];
+        $updated['address'] = $data['address'];
+        $updated['is_default'] = $data['default']?1:0;
+        Address::where('id', $addressId)->update($updated);
+        return Response::output(Response::$ok, '已更新');
+    }
 }
