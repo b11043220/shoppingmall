@@ -42,4 +42,23 @@ class UserController extends Controller
         Address::destroy($addressId);
         return Response::output(Response::$ok, '已删除');
     }
+
+    public function addAddress(Request $request)
+    {
+        $input = $request->all();
+        $default = $input['default']?1:0;
+        if ($default) {
+            Address::where('user_id', $input['userId'])->update(['is_default' => 0]);
+        }
+        $addressId = Address::insertGetId([
+            'user_id' => $input['userId'],
+            'name' => $input['name'],
+            'mobile' => $input['mobile'],
+            'address' => $input['address'],
+            'is_default' => $default,
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s')
+        ]);
+        return Response::output(Response::$ok, '已添加');
+    }
 }
