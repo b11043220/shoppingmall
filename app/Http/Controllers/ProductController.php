@@ -42,7 +42,7 @@ class ProductController extends Controller
     public function getProductsByCateId(Request $request)
     {
         $data = $request->input();
-        Log::info($data);
+        Log::info($request->all());exit;
         $pageSize = 20;
         $page = isset($data['page']) ?? 1;
         $offset = ($page-1)*$pageSize;
