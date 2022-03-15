@@ -21,4 +21,9 @@ class BizRepository extends BaseRepository
             ->get()
             ->toArray();
     }
+
+    public function getProductDtl($productId, $columns=['*'])
+    {
+        return Product::where('id', $productId)->select($columns)->first()->toArray();
+    }
 }

@@ -61,4 +61,28 @@ class ProductController extends Controller
         }
         return Response::output(Response::$ok, '获取成功', $productList);
     }
+
+    public function getProductDtl(Request $request)
+    {
+        $productId = $request->get('productId');
+        $product = $this->bizRepo->getProductDtl($productId);
+        $data['title'] = $product['title'];
+        $data['subTitle'] = $product['sub_title'];
+        $data['marketPrice'] = $product['market_price'];
+        $data['salePrice'] = $product['sale_price'];
+        $banners = $product['bannerimgs'];
+        foreach ($banners as $keys => $banner) {
+            $imgPath = Helper::imageLink($banner);
+            $banners[$keys] = $imgPath;
+        }
+        $captions = $product['captionimgs'];
+        foreach ($captions as $keys => $caption) {
+            $imgPath = Helper::imageLink($caption);
+            $captions[$keys] = $imgPath;
+        }
+        $data['banners'] = $banners;
+        $data['captions'] = $captions;
+        dd($data);
+        return Response::output(Response::$ok, '获取成功', $data);
+    }
 }

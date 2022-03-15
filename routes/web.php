@@ -13,3 +13,4 @@
 
 Route::any('api/getCategoryList',       'ProductController@getCategory');
 Route::any('api/getProductByCateId',    'ProductController@getProductsByCateId');
+Route::any('api/getProductDtl',         'ProductController@getProductDtl');
