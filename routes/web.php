@@ -20,4 +20,4 @@ Route::any('api/deleteCartItem',        'CartController@deleteCartItem');
 Route::any('api/updateCartQty',         'CartController@updateCartQty');
 Route::any('api/addCart',               'CartController@addCart');
 
-Route::any('api/getAddressList',        'UserController@addCart');
+Route::any('api/getAddressList',        'UserController@getAddressList');
