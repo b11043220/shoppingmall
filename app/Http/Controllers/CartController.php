@@ -62,7 +62,7 @@ class CartController extends Controller
         } else {
             $cartId = ShoppingCart::insertGetId([
                 'user_id' => $data['userId'],
-                'product_id' => $data['productId'],
+                'goods_id' => $data['productId'],
                 'qty' => $data['quantity'],
                 'updated_at' => date('Y-m-d H:i:s'),
                 'created_at' => date('Y-m-d H:i:s'),
