@@ -37,4 +37,12 @@ class BizRepository extends BaseRepository
     {
         return ShoppingCart::destroy($cartId);
     }
+
+    public function updateCartQty($cartId, $quantity)
+    {
+        $cartObj = ShoppingCart::find($cartId);
+        $cartObj->qty = $quantity;
+        $cartObj->update();
+        return true;
+    }
 }

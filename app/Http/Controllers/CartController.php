@@ -39,4 +39,13 @@ class CartController extends Controller
         $this->bizRepo->deleteCartItem($cartIds);
         return Response::output(Response::$ok, '已删除');
     }
+
+    public function updateCartQty(Request $request)
+    {
+        $input = $request->all();
+        $cartId = $input['cartId'];
+        $quantity = $input['quantity'];
+        $this->bizRepo->updateCartQty($cartId, $quantity);
+        return Response::output(Response::$ok, '已更新');
+    }
 }

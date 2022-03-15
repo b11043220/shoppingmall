@@ -17,3 +17,4 @@ Route::any('api/getProductDtl',         'ProductController@getProductDtl');
 
 Route::any('api/getCartItems',          'CartController@getCartItems');
 Route::any('api/deleteCartItem',        'CartController@deleteCartItem');
+Route::any('api/updateCartQty',         'CartController@updateCartQty');
