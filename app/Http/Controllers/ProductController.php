@@ -40,8 +40,13 @@ class ProductController extends Controller
 
     public function getProductsByCateId(Request $request)
     {
-        $cateId = $request->get('cateId');
-        $productList = $this->bizRepo->getProductByCateId($cateId);
+        $data = $request->input();
+        $pageSize = 20;
+        $page = isset($data['page']) ?? 1;
+        $offset = ($page-1)*$pageSize;
+        $cateId = $data['cateId'];
+
+        $productList = $this->bizRepo->getProductByCateId($cateId, $pageSize, $offset);
         foreach ($productList as $key => $product) {
             $productList[$key]['thumb'] = Helper::imageLink($product['thumb']);
             $bannerImgs = $product['bannerimgs'];

@@ -12,8 +12,13 @@ class BizRepository extends BaseRepository
         return Category::pid($pid)->select($columns)->get()->toArray();
     }
 
-    public function getProductByCateId($cateId, $columns=['*'])
+    public function getProductByCateId($cateId,$pageSize, $offset, $columns=['*'])
     {
-        return Product::cateId($cateId)->select($columns)->get()->toArray();
+        return Product::cateId($cateId)
+            ->offset($offset)
+            ->limit($pageSize)
+            ->select($columns)
+            ->get()
+            ->toArray();
     }
 }
