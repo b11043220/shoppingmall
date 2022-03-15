@@ -34,4 +34,12 @@ class UserController extends Controller
         Address::where('id', $addressId)->update($updated);
         return Response::output(Response::$ok, '已更新');
     }
+
+    public function deleteAddressItem(Request $request)
+    {
+        $input = $request->all();
+        $addressId = $input['addressId'];
+        Address::destroy($addressId);
+        return Response::output(Response::$ok, '已删除');
+    }
 }
