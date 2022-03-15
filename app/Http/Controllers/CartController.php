@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Lib\Helper;
 use App\Lib\Response;
+use App\Models\Cart\ShoppingCart;
 use App\Repository\BizRepository;
 use Illuminate\Http\Request;
 
@@ -47,5 +48,26 @@ class CartController extends Controller
         $quantity = $input['quantity'];
         $this->bizRepo->updateCartQty($cartId, $quantity);
         return Response::output(Response::$ok, '已更新');
+    }
+
+    public function addCart(Request $request)
+    {
+        $data = $request->input();
+        $cartObj = ShoppingCart::where('user_id', $data['userId'])
+            ->where('goods_id', $data['productId'])
+            ->first();
+        if ($cartObj) {
+            $cartObj->qty += $data['quantity'];
+            $cartObj->save();
+        } else {
+            $cartId = ShoppingCart::insertGetId([
+                'user_id' => $data['userId'],
+                'product_id' => $data['productId'],
+                'qty' => $data['quantity'],
+                'updated_at' => date('Y-m-d H:i:s'),
+                'created_at' => date('Y-m-d H:i:s'),
+            ]);
+        }
+        return Response::output(Response::$ok, '已加入购物车');
     }
 }
