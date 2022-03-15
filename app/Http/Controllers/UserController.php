@@ -21,11 +21,16 @@ class UserController extends Controller
     public function updateAddress(Request $request)
     {
         $data = $request->input();
+        $default = $data['default']?1:0;
+        if ($default) {
+            Address::where('user_id', $data['userId'])->update(['is_default' => 0]);
+        }
+
         $addressId = $data['addressId'];
         $updated['name'] = $data['name'];
         $updated['mobile'] = $data['mobile'];
         $updated['address'] = $data['address'];
-        $updated['is_default'] = $data['default']?1:0;
+        $updated['is_default'] = $default;
         Address::where('id', $addressId)->update($updated);
         return Response::output(Response::$ok, '已更新');
     }
