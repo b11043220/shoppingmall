@@ -7,6 +7,7 @@ use App\Lib\Response;
 use App\Models\Product\Category;
 use App\Repository\BizRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class ProductController extends Controller
 {
@@ -41,6 +42,7 @@ class ProductController extends Controller
     public function getProductsByCateId(Request $request)
     {
         $data = $request->input();
+        Log::info($data);
         $pageSize = 20;
         $page = isset($data['page']) ?? 1;
         $offset = ($page-1)*$pageSize;
